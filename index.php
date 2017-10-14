@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 
-function createWrap() {
+function createWrap():string {
     if (isset($_SERVER['HTTP_USER_AGENT'])) {
-        return '<br>';
+        return "<br>";
     }
     else{
         return "\n\r";  
@@ -12,17 +13,16 @@ function createWrap() {
 function printFolder(string $folder,string  $wrap) {
     $files=scandir($folder);
     foreach($files as $file) {
-        if (($file=="..") || ($file==".")){
-            continue;
-        }
-        $filePath=$folder.'/'.$file;
-        if (is_dir($filePath)){
-            printFolder($filePath,$wrap);
-            
-        }
-        else{
-            echo $filePath.$wrap;
-        }
+        if (($file!="..") && ($file!=".")){
+		$filePath=$folder.'/'.$file;
+		if (is_dir($filePath)){
+		    printFolder($filePath,$wrap);
+		    
+		}
+		else{
+		    echo $filePath.$wrap;
+		}
+	}
     }
 }
 
