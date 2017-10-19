@@ -10,7 +10,7 @@ function createWrap():string {
     }
 }
 
-function printFolder(string $folder,string  $wrap) {
+function printFolder(string $folder,string  $wrap):void {
     $files=scandir($folder);
     foreach($files as $file) {
         if (($file!="..") && ($file!=".")){
@@ -29,4 +29,3 @@ function printFolder(string $folder,string  $wrap) {
 $wrap= createWrap();
 printFolder(__DIR__,$wrap);
  
- /**/
